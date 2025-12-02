@@ -15,10 +15,10 @@
     STIG-ID         : WN11-CC-000110
 
 .TESTED ON
-    Date(s) Tested  : 
-    Tested By       : 
-    Systems Tested  : 
-    PowerShell Ver. : 
+    Date(s) Tested  : 2025-12-02
+    Tested By       : Jason Morrissette
+    Systems Tested  : 1
+    PowerShell Ver. : 5.1.26100.7019
 
 .USAGE
     Put any usage instructions here.
