@@ -1,7 +1,7 @@
 <#
 .SYNOPSIS
     This PowerShell script ensures that Customer Features are Disabled.
-    Enforces "Turn off printing over HTTP" (DisableHTTPPrinting = 1)
+
 
 .NOTES
     Author          : Jason Morrissette
@@ -21,8 +21,7 @@
     PowerShell Ver. : 5.1.26100.7019
 
 .USAGE
-    Put any usage instructions here.
-    Save as e.g. Set-DisableHTTPPrinting.ps1.
+    Save as e.g. Set-DisableWindowsConsumerFeatures.ps1.
     Run PowerShell as Administrator.
     Execute:
 
