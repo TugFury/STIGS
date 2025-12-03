@@ -7,15 +7,15 @@
     Author          : Jason Morrissette
     LinkedIn        : https://www.linkedin.com/in/jasonmorrissette/
     GitHub          : https://github.com/TugFury
-    Date Created    : 2025-12-02
-    Last Modified   : 2025-12-02
+    Date Created    : 2025-12-03
+    Last Modified   : 2025-12-03
     Version         : 1.0
     CVEs            : N/A
     Plugin IDs      : N/A
     STIG-ID         : WN11-CC-000197
 
 .TESTED ON
-    Date(s) Tested  : 2025-12-02
+    Date(s) Tested  : 2025-12-03
     Tested By       : Jason Morrissette
     Systems Tested  : 1
     PowerShell Ver. : 5.1.26100.7019
