@@ -7,3 +7,5 @@ Repo for STIG Implementations
 <a href="https://github.com/TugFury/STIGS/tree/main/WN11-CC-000197">WN11-CC-000197:</a> Disable Windows Customer Featurers
 
 <a href="https://github.com/TugFury/STIGS/tree/main/WN11-CC-000315">WN11-CC-000315:</a> Disable Windows Customer Featurers
+<a href="https://github.com/TugFury/STIGS/tree/main/WN11-CC-000315">WN11-CC-000315:</a> Windows Ink Workspace must be configured to disallow access above the lock.
+
