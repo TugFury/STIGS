@@ -1,7 +1,7 @@
 <#
 .SYNOPSIS
-    This PowerShell script ensures that Customer Features are Disabled.
-    Enforces "Allow Windows Ink Workspace" (AllowWindowsInkWorkspace = 1)
+    Enforces STIG WN11-CC-000305 by disabling indexing of encrypted files.
+    Applies the registry value AllowIndexingEncryptedStoresOrItems = 0 to prevent exposure of sensitive encrypted data.
 
 .NOTES
     Author          : Jason Morrissette
@@ -12,7 +12,7 @@
     Version         : 1.0
     CVEs            : N/A
     Plugin IDs      : N/A
-    STIG-ID         : WN11-CC-000385
+    STIG-ID         : WN11-CC-000305
 
 .TESTED ON
     Date(s) Tested  : 2025-12-03
@@ -21,15 +21,15 @@
     PowerShell Ver. : 5.1.26100.7019
 
 .USAGE
-    Save as e.g. Set-DisableHTTPPrinting.ps1.
+    Save this script as e.g. Set-DisableEncryptedIndexing.ps1.
     Run PowerShell as Administrator.
+    
     Execute:
-
     Set-ExecutionPolicy RemoteSigned -Scope Process
-    .\Set-AllowWindowsInkWorkspace.ps1
-   
-    Should Return:
-    AllowWindowsInkWorkspace : 1
+    .\Set-DisableEncryptedIndexing.ps1
+
+    Verification should return:
+    AllowIndexingEncryptedStoresOrItems : 0
 #>
 
 # Must be run as Administrator
@@ -40,17 +40,17 @@ if (-not ([Security.Principal.WindowsPrincipal] `
     exit 1
 }
 
-$regPath     = 'HKLM:\SOFTWARE\Policies\Microsoft\WindowsInkWorkspace'
-$valueName   = 'AllowWindowsInkWorkspace'
-$desiredValue = 1
+$regPath      = 'HKLM:\SOFTWARE\Policies\Microsoft\Windows\Windows Search'
+$valueName    = 'AllowIndexingEncryptedStoresOrItems'
+$desiredValue = 0
 
-# Ensure registry key exists
+# Ensure registry path exists
 if (-not (Test-Path -Path $regPath)) {
     Write-Host "Registry path not found — creating $regPath ..."
     New-Item -Path $regPath -Force | Out-Null
 }
 
-# Create/Update DWORD value
+# Apply DWORD value
 Write-Host "Applying STIG — setting $valueName to $desiredValue ..."
 New-ItemProperty -Path $regPath `
                  -Name $valueName `
@@ -58,13 +58,13 @@ New-ItemProperty -Path $regPath `
                  -Value $desiredValue `
                  -Force | Out-Null
 
-# Verification
+# Verify result
 $current = (Get-ItemProperty -Path $regPath -Name $valueName -ErrorAction Stop).$valueName
 
 Write-Host ("Current value of {0} = {1}" -f $valueName, $current)
 
 if ($current -eq $desiredValue) {
-    Write-Host "✔ STIG WN11-CC-000385 applied successfully — Windows Ink restricted above lock." -ForegroundColor Green
+    Write-Host "✔ STIG WN11-CC-000305 applied successfully — encrypted file indexing disabled." -ForegroundColor Green
     exit 0
 }
 else {

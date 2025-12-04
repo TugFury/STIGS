@@ -1,6 +1,6 @@
 <#
 .SYNOPSIS
-    This PowerShell script ensures that Customer Features are Disabled.
+    This PowerShell script ensures that Elevated Installer is Disabled.
     Enforces "Turn off printing over HTTP" (DisableHTTPPrinting = 1)
 
 .NOTES
@@ -12,7 +12,7 @@
     Version         : 1.0
     CVEs            : N/A
     Plugin IDs      : N/A
-    STIG-ID         : WN11-CC-000197
+    STIG-ID         : WN11-CC-000315
 
 .TESTED ON
     Date(s) Tested  : 2025-12-03
