@@ -1,7 +1,8 @@
 <#
 .SYNOPSIS
     Enforces STIG WN11-CC-000305 by disabling indexing of encrypted files.
-    Applies the registry value AllowIndexingEncryptedStoresOrItems = 0 to prevent exposure of sensitive encrypted data.
+    Applies the registry value AllowIndexingEncryptedStoresOrItems = 0 
+    to prevent exposure of sensitive encrypted data.
 
 .NOTES
     Author          : Jason Morrissette
