@@ -9,5 +9,5 @@ Repo for STIG Implementations
 <a href="https://github.com/TugFury/STIGS/tree/main/WN11-CC-000305">WN11-CC-000305:</a> Indexing of encrypted files must be turned off <br>
 <a href="https://github.com/TugFury/STIGS/tree/main/WN11-AU-000560">WN11-AU-000560</a> Windows 11 must be configured to audit other Logon/Logoff Events Successes.<br>
 <a href="https://github.com/TugFury/STIGS/tree/main/WN11-AU-000560">WN11-AU-000585</a> Windows 11 must have command line process auditing events enabled for failures.<br>
-<a href="https://github.com/TugFury/STIGS/tree/main/WN11-AU-000560">WN11-SO-000025</a> The built-in guest account must be renamed.
-
+<a href="https://github.com/TugFury/STIGS/tree/main/WN11-AU-000560">WN11-SO-000025</a> The built-in guest account must be renamed.<br>
+<a href="https://github.com/TugFury/STIGS/tree/main/WN11-AU-000560">WN11-00-000175</a> The Secondary Logon service must be disabled on Windows 11.
