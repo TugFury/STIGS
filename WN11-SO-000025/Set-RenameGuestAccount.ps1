@@ -1,6 +1,6 @@
 <#
 .SYNOPSIS
-   Enforces STIG WN11-SO-000025 by renaming the built-in Guest account.
+     Enforces STIG WN11-00-000175 by disabling the Secondary Logon service.
 
 .DESCRIPTION
     Renames the local built-in Guest account to a non-default name to reduce the risk of
@@ -42,25 +42,36 @@ if (-not ([Security.Principal.WindowsPrincipal] `
     exit 1
 }
 
-Write-Host "Applying STIG — enabling Failure auditing for Process Creation..." 
+$oldGuestName = 'Guest'
+$newGuestName = 'LocalGst_01'   # <-- change this if you want a different name
 
-# Set audit policy (Failure enabled; Success left unchanged)
-auditpol.exe /set /subcategory:"Process Creation" /failure:enable
+Write-Host "Checking for local account named '$oldGuestName'..."
 
-# Read back the current setting
-$current = auditpol.exe /get /subcategory:"Process Creation"
+try {
+    $guest = Get-LocalUser -Name $oldGuestName -ErrorAction Stop
+}
+catch {
+    Write-Warning "No local user named '$oldGuestName' was found. Nothing to rename."
+    exit 0
+}
 
-Write-Host "Current audit setting for Process Creation:"
-Write-Host $current
+# Check if target name already exists
+if (Get-LocalUser -Name $newGuestName -ErrorAction SilentlyContinue) {
+    Write-Error "A local user named '$newGuestName' already exists. Choose a different value for `\$newGuestName`."
+    exit 2
+}
 
-# Validation: treat 'Failure' or 'Success and Failure' as compliant
-if ($current -match "Process Creation\s+Failure" -or
-    $current -match "Process Creation\s+Success and Failure") {
+Write-Host "Renaming '$oldGuestName' to '$newGuestName'..."
+Rename-LocalUser -Name $oldGuestName -NewName $newGuestName
 
-    Write-Host "✔ STIG WN11-AU-000585 applied successfully — Failure auditing enabled for Process Creation." -ForegroundColor Green
+# Verification
+$verify = Get-LocalUser -Name $newGuestName -ErrorAction SilentlyContinue
+
+if ($null -ne $verify) {
+    Write-Host "✔ STIG WN11-SO-000025 applied successfully — Guest account renamed to '$newGuestName'." -ForegroundColor Green
     exit 0
 }
 else {
-    Write-Warning "❌ Validation check failed — please review auditpol output manually."
-    exit 2
+    Write-Warning "❌ Verification failed — could not find account '$newGuestName' after rename."
+    exit 3
 }
