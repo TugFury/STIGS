@@ -21,7 +21,7 @@
     PowerShell Ver. : 5.1.26100.7019
 
 .USAGE
-    Save as e.g. Set-DisableHTTPPrinting.ps1.
+    Save as e.g. Set-AllowWindowsInkWorkspace.ps1.
     Run PowerShell as Administrator.
     Execute:
 

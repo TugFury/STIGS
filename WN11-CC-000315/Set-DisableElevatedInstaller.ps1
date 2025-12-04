@@ -22,16 +22,15 @@
 
 .USAGE
     Put any usage instructions here.
-    Save as e.g. Set-DisableHTTPPrinting.ps1.
+    Save as e.g. Set-DisableElevatedInstaller.ps1.
     Run PowerShell as Administrator.
     Execute:
 
     Set-ExecutionPolicy RemoteSigned -Scope Process
-    .\Set-DisableWindowsConsumerFeatures.ps1
+    .\Set-DisableElevatedInstaller.ps1
    
     Verifying the fix
-    Get-ItemProperty 'HKLM:\SOFTWARE\Policies\Microsoft\Windows\CloudContent' -Name 'DisableWindowsConsumerFeatures'
-
+    Get-ItemProperty 'HKLM:\SOFTWARE\Policies\Microsoft\Windows\Installer' -Name 'AlwaysInstallElevated'
 
     Should Return:
     DisableWindowsConsumerFeatures : 1
